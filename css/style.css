@@ -112,22 +112,22 @@ table,th,td {
 }
 
 .error {
-    background:#ffecec url('images/error.png') no-repeat 10px 75%;
+    background:#ffecec no-repeat 10px 75%;
     border:1px solid #f5aca6;
     margin-bottom: 10px;
 }
 .success {
-    background:#e9ffd9 url('images/success.png') no-repeat 10px 75%;
+    background:#e9ffd9 no-repeat 10px 75%;
     border:1px solid #a6ca8a;
     margin-bottom: 10px;
 }
 .warning {
-    background:#fff8c4 url('images/warning.png') no-repeat 10px 75%;
+    background:#fff8c4 no-repeat 10px 75%;
     border:1px solid #f2c779;
     margin-bottom: 10px;
 }
 .notice {
-    background:#e3f7fc url('images/notice.png') no-repeat 10px 75%;
+    background:#e3f7fc no-repeat 10px 75%;
     border:1px solid #8ed9f6;
     margin-bottom: 10px;
 }
@@ -178,3 +178,20 @@ table,th,td {
     display: inline;
 }
 /* End Random Coloring */
+
+table.tablesorter .headerSortUp {
+    background-image: url('../images/asc.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+table.tablesorter .headerSortDown {
+    background-image: url('../images/desc.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+table.tablesorter .header {
+    cursor: pointer;
+    background-image: url('../images/bg.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}

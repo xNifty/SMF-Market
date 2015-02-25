@@ -12,11 +12,28 @@ $SMFUser = $context['user']['username'];
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 ?>
 <!doctype HTML>
+<html>
 <head>
     <meta charset="utf-8">
     <title>PR Market, Alpha 0.0.1</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="javascript/jquery-latest.js"></script>
+    <script type="text/javascript" src="javascript/jquery.tablesorter.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#results").tablesorter({headers: { 0: { sorter: false}, 5: {sorter: false}, 6: {sorter: false}}});
+        });
+    </script>
 </head>
+<noscript>
+    <style type="text/css">
+        wrapper {display: none;}
+        .nsText {text-align: center;}
+    </style>
+    <div class="nsText">
+        Please enable JS to use the market.
+    </div>
+</noscript>
 <body>
     <ul class="nav">
         <li><a href="./">Home</a></li>
@@ -26,6 +43,9 @@ $SMFUser = $context['user']['username'];
             <input type="submit" value="Submit"></form></li>
     </ul>
     <?php
+        function in_array_any($needles, $haystack) {
+            return !!array_intersect($needles, $haystack);
+        }
         if (!$context['user']['is_guest']) {
             echo '<div class="center_text_header">Welcome, '.($context['user']['username']).'!</div>';
             echo '<hr>';
@@ -56,41 +76,46 @@ $SMFUser = $context['user']['username'];
             echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
             exit();
         } else {
-            if (@$offers = $conn->prepare("SELECT `ID`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? ORDER BY `ID` DESC LIMIT 50")) {
+            if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? ORDER BY `ID` DESC LIMIT 50")) {
                 @$offers->bind_param('ss', $search, $search);
                 @$offers->execute();
                 @$offers->store_result();
-                @$offers->bind_result($id, $username, $item, $amount, $price, $postDate);
+                @$offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
                 @$num_rows = $offers->num_rows;
                 if ($num_rows == 0)
                     echo '<div class="alert-box error"><span>ERROR: </span>No Results Found For <div class="special_word">'.$display.'</div></div>';
-                    //echo '<div class="center_text">No Results Found For "'.$search.'"</div>';
                 else {
                     echo '<div class="alert-box success"><span>SUCCESS: </span>Found '.$num_rows.' results for <div class="special_word">'.$display.'</div></div>';
-                    echo '<table>';
+                    echo '<table id="results" class="tablesorter">';
+                        echo '<thead>';
                         echo '<tr>';
                             echo '<th>User</th>';
+                            echo '<th>Offer Type</th>';
                             echo '<th>Item</th>';
                             echo '<th>Price</th>';
                             echo '<th>Amount</th>';
                             echo '<th>Date</th>';
                             echo '<th>Delete</th>';
                         echo '</tr>';
+                        echo '</thead>';
+                        echo '<tbody>';
                     while ($offers->fetch()) {
                         echo '<tr>';
                             echo '<td>'.$username.'</td>';
+                            echo '<td>'.$offerType.'</td>';
                             echo '<td>'.ucwords($item).'</td>';
                             echo '<td>'.number_format($amount).'</td>';
                             echo '<td>'.number_format($price).'</td>';
                             echo '<td>'.date("F j, Y / g:i a", strtotime($postDate)).'</td>';
                            if ($username == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])))
-                            echo '<td><form action="delete.php?" method="GET" id="delete" onsubmit="setTimeout(function () { window.location.reload(); }, 60)">
-                                    <form type="submit" value="Delete">
-                                    </form><button type="submit" form="delete" value="'.$id.'" name="id">Delete</button></td>';
-                        else
-                            echo '<td><button type="button" disabled>Delete</button></td>';
+                                echo '<td><form action="backend/delete.php" method="POST" id="delete" onsubmit="window.location.reload();">
+                                        <form type="submit" value="Delete">
+                                        </form><button type="submit" form="delete" value="'.$id.'" name="id">Delete</button></td>';
+                            else
+                                echo '<td><button type="button" disabled>Delete</button></td>';
                         echo '</tr>';
                     }
+                    echo '</tbody>';
                     echo '</table>';
                 }
             }

@@ -42,7 +42,6 @@ $SMFUser = $context['user']['username'];
 		<?php
 			$now = new DateTime();
 			$now->setTimezone(new DateTimeZone('America/Detroit'));
-			//echo $now->format('Y-m-d H:i:s');
 			function in_array_any($needles, $haystack) {
 				return !!array_intersect($needles, $haystack);
 			}
@@ -77,10 +76,10 @@ $SMFUser = $context['user']['username'];
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
 	       		exit();
 	       	 } else {
-	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT 25")) {
+	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT 25")) {
 	                @$offers->execute();
 	                @$offers->store_result();
-	                @$offers->bind_result($id, $username, $item, $amount, $price, $postDate);
+	                @$offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
 	                @$num_rows = $offers->num_rows;
 	                if ($num_rows == 0)
 	                    echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
@@ -93,6 +92,7 @@ $SMFUser = $context['user']['username'];
 	                    echo '<table>';
 	                        echo '<tr>';
 	                            echo '<th>User</th>';
+	                            echo '<th>Offer Type</th>';
 	                            echo '<th>Item</th>';
 	                            echo '<th>Price</th>';
 	                            echo '<th>Amount</th>';
@@ -102,6 +102,7 @@ $SMFUser = $context['user']['username'];
 	                    while ($offers->fetch()) {
 	                        echo '<tr>';
 	                            echo '<td>'.$username.'</td>';
+	                            echo '<td>'.$offerType.'</td>';
 	                            echo '<td>'.ucwords($item).'</td>';
 	                            echo '<td>'.number_format($amount).'</td>';
 	                            echo '<td>'.number_format($price).'</td>';
@@ -125,7 +126,7 @@ $SMFUser = $context['user']['username'];
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
 		       	 			echo '<div class="offer-title">Offer Type</div>';
-		       	 			echo '<select offer="offerType" name="offer" required> <option value="" disabled selected>Please Select One</option> <option value="Buy">Buying</option> <option value="Sell">Selling</option></select>';	       	 			
+		       	 			echo '<select offer="offerType" name="offer" required> <option value="" disabled selected>Please Select One</option> <option value="Buying">Buying</option> <option value="Selling">Selling</option></select>';	       	 			
 		       	 			
 		       	 			echo '<div class="offer-title">Item Name</div>';
 		       	 			echo '<input type ="text" name="item" maxlength="25" placeholder="Item Name" required>';
