@@ -9,7 +9,15 @@ $DBPass = '';
 $DBName = 'market';
 
 $SMFUser = $context['user']['username'];
+$perpage = 25;
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
+
+if (isset($_GET['page'])) {
+	$page = $_GET['page'];
+} else {
+	$page = 1;
+}
+$startpage = ($page-1)*$perpage;
 ?>
 
 <!doctype HTML>
@@ -35,7 +43,7 @@ $SMFUser = $context['user']['username'];
 		<ul class="nav">
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Forums</a></li>
-			<li><form action="search.php" method="POST">
+			<li><form action="search.php" method="GET">
 				<input type="text" name="search" placeholder="Search">
 				<input type="submit" value="Submit"></form></li>
 		</ul>
@@ -76,7 +84,7 @@ $SMFUser = $context['user']['username'];
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
 	       		exit();
 	       	 } else {
-	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT 25")) {
+	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
 	                @$offers->execute();
 	                @$offers->store_result();
 	                @$offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
@@ -87,7 +95,7 @@ $SMFUser = $context['user']['username'];
 	                else {
 						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
 						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
-						echo '<div class="header_text">This page only displays 25 offers; please use the search bar for more. <br /></div>';
+						echo '<div class="header_text">This page only displays 25 offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
 						echo '<hr>';
 	                    echo '<table>';
 	                        echo '<tr>';
@@ -118,8 +126,8 @@ $SMFUser = $context['user']['username'];
 	                    echo '</table>';
                 	}
                 } else {
-                	var_dump($offers);
-                	echo 'OOOPS';
+                	echo 'Something broke...contact the web admin.';
+                	die();
                 }
 	       	 	if (!$context['user']['is_guest']) {
 					echo '<form action="backend/post.php" method="POST" id="post-offer">';;
@@ -141,6 +149,18 @@ $SMFUser = $context['user']['username'];
 		       	 		echo '</div>';
 			       	echo '</form>';
 		       	}
+				if (@$pagin = $conn->prepare("SELECT * FROM `entries`")) {
+					@$pagin->execute();
+					@$pagin->store_result();
+					@$pagin->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+					@$total = $pagin->num_rows;
+					$total_pages = ceil($total / $perpage);
+					echo '<div class="pag_text">';
+					for ($i = 1; $i <= $total_pages; $i++) {
+						echo '<a href="index.php?page='.$i.'">'.$i.'</a>';
+					}
+					echo '</div>';
+				}
 	       	 	$time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
 	       	 	echo '<div class="footer">All times are Eastern</div>';
 	       		echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';

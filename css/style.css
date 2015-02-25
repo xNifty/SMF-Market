@@ -57,13 +57,21 @@ table,th,td {
     padding: 10px;
 }
 
-.nav a:link, a:visited {
+.nav a:link {
+    font-weight: bold;
+    color: #FFF !important;
+    text-decoration: none;
+}
+.nav a:visited {
     font-weight: bold;
     color: #FFF !important;
     text-decoration: none;
 }
 
-.nav a:hover, a:active {
+.nav a:hover {
+    background-color: #0080FF !important;
+}
+.nav a:active {
     background-color: #0080FF !important;
 }
 
@@ -132,6 +140,30 @@ table,th,td {
     margin-bottom: 10px;
 }
 
+/* PAGINATION */
+.pag_text {
+    text-align: center;
+    margin: 0 auto; 
+    font-size: 12pt;
+}
+.pag li {
+    display: inline;
+}
+.pag_text a:hover {
+    color: blue;
+}
+.pag_text a:active {
+    color: blue;
+}
+.pag_text a:visited {
+    color: blue;
+}
+.pag_text a:link {
+    color: blue;
+    text-decoration: none;
+}
+/* END PAGINATION */
+
 /* New Offer */
 .new_offer {
     color: #555;
@@ -179,6 +211,7 @@ table,th,td {
 }
 /* End Random Coloring */
 
+/* TABLES */
 table.tablesorter .headerSortUp {
     background-image: url('../images/asc.gif');
     background-repeat: no-repeat;
@@ -195,3 +228,4 @@ table.tablesorter .header {
     background-repeat: no-repeat;
     background-position: center right;
 }
+/* END TABLES */

@@ -10,6 +10,13 @@ $DBName = 'market';
 
 $SMFUser = $context['user']['username'];
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
+$perpage = 25;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$startpage = ($page-1)*$perpage;
 ?>
 <!doctype HTML>
 <html>
@@ -70,13 +77,13 @@ $SMFUser = $context['user']['username'];
         * DONE:
         *   - Returns any matching result (i.e. dragon would show all items with dragon in name or users with dragon in their name)
         */
-        $search = "%{$_POST['search']}%";
-        $display = $_POST['search'];
+        $search = "%{$_GET['search']}%";
+        $display = $_GET['search'];
         if ($conn->connect_error) {
             echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
             exit();
         } else {
-            if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? ORDER BY `ID` DESC LIMIT 50")) {
+            if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
                 @$offers->bind_param('ss', $search, $search);
                 @$offers->execute();
                 @$offers->store_result();
@@ -118,6 +125,19 @@ $SMFUser = $context['user']['username'];
                     echo '</tbody>';
                     echo '</table>';
                 }
+            }
+            if (@$pagin = $conn->prepare("SELECT * FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ?")) {
+                @$pagin->bind_param('ss', $search, $search);
+                @$pagin->execute();
+                @$pagin->store_result();
+                @$pagin->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+                @$total = $pagin->num_rows;
+                $total_pages = ceil($total / $perpage);
+                echo '<div class="pag_text">';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    echo '<a href="search.php?search='.$display.'&page='.$i.'">'.$i.'</a>';
+                }
+                echo '</div>';
             }
             $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
             echo '<div class="footer">All times are Eastern</div>';
