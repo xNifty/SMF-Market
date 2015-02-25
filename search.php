@@ -1,7 +1,5 @@
 <?php
 require_once('../smf/SSI.php');
-$_SESSION['login_url']= getenv('HTTP_REFERER');
-$_SESSION['logout_url'] = getenv('HTTP_REFERER');
 
 $DBServer = 'localhost';
 $DBUser = 'root';
