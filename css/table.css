@@ -1,0 +1,18 @@
+/* TABLES */
+table.tablesorter .headerSortUp {
+    background-image: url('../images/asc.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+table.tablesorter .headerSortDown {
+    background-image: url('../images/desc.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+table.tablesorter .header {
+    cursor: pointer;
+    background-image: url('../images/bg.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+/* END TABLES */

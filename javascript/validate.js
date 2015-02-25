@@ -32,3 +32,10 @@ function numbersonly(myfield, e, dec) {
 	else
 		return false;
 }
+
+function validateSearch(term) {
+	var search = term;
+	if (term == null || term == '') {
+		alert("You must search for something!");
+	}
+}

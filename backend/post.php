@@ -1,7 +1,5 @@
 <?php
 require_once('../../smf/SSI.php');
-$_SESSION['login_url'] = 'localhost' . $_SERVER['PHP_SELF'];
-$_SESSION['logout_url'] = 'localhost/testing/test.php';
 
 $DBServer = 'localhost';
 $DBUser = 'root';

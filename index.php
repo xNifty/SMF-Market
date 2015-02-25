@@ -1,7 +1,5 @@
 <?php
 require_once('../smf/SSI.php');
-$_SESSION['login_url'] = 'localhost' . $_SERVER['PHP_SELF'];
-$_SESSION['logout_url'] = 'localhost/testing/test.php';
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -26,6 +24,7 @@ $startpage = ($page-1)*$perpage;
 	<title>PR Market, Alpha 0.0.1</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<script src="javascript/validate.js"></script>
+	</script>
 </head>
 
 <noscript>
@@ -44,8 +43,8 @@ $startpage = ($page-1)*$perpage;
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Forums</a></li>
 			<li><form action="search.php" method="GET">
-				<input type="text" name="search" placeholder="Search">
-				<input type="submit" value="Submit"></form></li>
+				<input type="text" name="search" placeholder="Search" required>
+				<input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>
 		</ul>
 		<?php
 			$now = new DateTime();
@@ -60,6 +59,8 @@ $startpage = ($page-1)*$perpage;
 				echo '<div class="center_text_header">Welcome, '.($context['user']['username']).'!</div>';
 			 } else {
 				echo '<div class="center_text_header">Welcome, Guest!</div>';
+				echo '<div class="header_text">You must be logged into the <a href="#">forums</a> to make use of posting offers<br /></div>';
+				echo '<hr>';
 			}
 
 			/* 
@@ -97,7 +98,7 @@ $startpage = ($page-1)*$perpage;
 						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
 						echo '<div class="header_text">This page only displays 25 offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
 						echo '<hr>';
-	                    echo '<table>';
+	                    echo '<table class="displayoffers">';
 	                        echo '<tr>';
 	                            echo '<th>User</th>';
 	                            echo '<th>Offer Type</th>';

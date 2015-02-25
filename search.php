@@ -1,7 +1,7 @@
 <?php
 require_once('../smf/SSI.php');
-$_SESSION['login_url'] = 'localhost' . $_SERVER['PHP_SELF'];
-$_SESSION['logout_url'] = 'localhost/testing/test.php';
+$_SESSION['login_url']= getenv('HTTP_REFERER');
+$_SESSION['logout_url'] = getenv('HTTP_REFERER');
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -24,11 +24,12 @@ $startpage = ($page-1)*$perpage;
     <meta charset="utf-8">
     <title>PR Market, Alpha 0.0.1</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/table.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="javascript/jquery-latest.js"></script>
     <script type="text/javascript" src="javascript/jquery.tablesorter.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#results").tablesorter({headers: { 0: { sorter: false}, 5: {sorter: false}, 6: {sorter: false}}});
+            $("#results").tablesorter({headers: { 0: { sorter: false}, 6: {sorter: false}}});
         });
     </script>
 </head>
@@ -47,7 +48,7 @@ $startpage = ($page-1)*$perpage;
         <li><a href="#">Forums</a></li>
         <li><form action="search.php" method="POST">
             <input type="text" name="search" placeholder="Search">
-            <input type="submit" value="Submit"></form></li>
+            <input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>
     </ul>
     <?php
         function in_array_any($needles, $haystack) {
