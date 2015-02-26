@@ -1,5 +1,6 @@
 <?php
 require_once('../smf/SSI.php');
+include("backend/base.php");
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -73,13 +74,14 @@ $startpage = ($page-1)*$perpage;
 			/*
 			* Here is the MySQLi database loading and offer displaying; only shows 25 offers.
 			* TODO:
-			*	- Insert new offers
-			*	- On page login / logout
 			*	- Send private message to user on forums by clicking their name (logged in users only)
-			*   - Sort by buying or selling
 			* DONE:
 			*	- Searching
 			*	- User deletion of their entries
+			*	- Insert new offers
+			* IGNORED:
+			*	- On page login / logout (SMF SSI actually makes this stupidly annoying)
+			*   - Sort by buying or selling (search page only, index is always newest->oldest)
 			*/
 	       	if ($conn->connect_error) {
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';

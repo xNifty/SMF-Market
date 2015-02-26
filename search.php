@@ -1,5 +1,6 @@
 <?php
 require_once('../smf/SSI.php');
+include("backend/base.php");
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -70,11 +71,11 @@ $startpage = ($page-1)*$perpage;
         /*
         * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 50 results here
         * TODO:
-        *   - Pages for overflow
-        *   - Sort by buying or selling
-        *   - Sort by price, amount (search page only)
+        *   - ???
         * DONE:
         *   - Returns any matching result (i.e. dragon would show all items with dragon in name or users with dragon in their name)
+        *   - Pages for overflow (pagination)
+        *   - Sort by buying or selling (plus date, amount, item name)
         */
         $search = "%{$_GET['search']}%";
         $display = $_GET['search'];

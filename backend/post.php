@@ -1,5 +1,6 @@
 <?php
 require_once('../../smf/SSI.php');
+include("backend/base.php");
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -38,7 +39,7 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
     } else {
     	if (!$context['user']['is_guest']) {
 	    	if (@$offers = $conn->prepare("INSERT INTO entries(`offerType`, `Username`, `Item`, `Amount`, `Price`, `postDate`) VALUES (?, ?, ?, ?, ?, ?)")) {
-				@$offers->bind_param('ssssss', $_POST['offer'], $SMFUser, $_POST['item'], $_POST['amount'], $_POST['price'], $now->format('Y-m-d H:i:s'));
+				@$offers->bind_param('ssssss', $_POST['offer'], $SMFUser, strtolower($_POST['item']), $_POST['amount'], $_POST['price'], $now->format('Y-m-d H:i:s'));
 				@$offers->execute();
 				header("Location: ../");
 	    	} else {
