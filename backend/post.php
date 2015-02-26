@@ -24,13 +24,11 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
     $allowed_groups = array(1, 2);
 
     /*
-    * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 50 results here
+    * Here is the MySQLi database posting
     * TODO:
-    *   - Pages for overflow
-    *   - Sort by buying or selling
-    *   - Sort by price, amount (search page only)
+    *   - ???
     * DONE:
-    *   - Returns any matching result (i.e. dragon would show all items with dragon in name or users with dragon in their name)
+    *   - Post an offer
     */
     $entry = $_POST['post-offer'];
     if ($conn->connect_error) {

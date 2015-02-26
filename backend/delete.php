@@ -23,6 +23,14 @@ $SMFUser = $context['user']['username'];
     */
     $allowed_groups = array(1, 2);
 
+    /*
+    * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 50 results here
+    * TODO:
+    *   - ???
+    * DONE:
+    *   - Delete an offer
+    */
+
     $delete = $_POST['id'];
     if ($conn->connect_error) {
         echo '<div class="center_text">Error occured! Please alert the web admin!</div>';

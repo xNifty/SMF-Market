@@ -69,7 +69,7 @@ $startpage = ($page-1)*$perpage;
         $allowed_groups = array(1, 2);
 
         /*
-        * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 50 results here
+        * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 25 results per page
         * TODO:
         *   - ???
         * DONE:

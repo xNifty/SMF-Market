@@ -72,7 +72,7 @@ $startpage = ($page-1)*$perpage;
 			$allowed_groups = array(1, 2);
 
 			/*
-			* Here is the MySQLi database loading and offer displaying; only shows 25 offers.
+			* Here is the MySQLi database loading and offer displaying; only shows 25 offers per page
 			* TODO:
 			*	- Send private message to user on forums by clicking their name (logged in users only)
 			* DONE:
