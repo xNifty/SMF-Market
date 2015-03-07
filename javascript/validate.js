@@ -33,9 +33,18 @@ function numbersonly(myfield, e, dec) {
 		return false;
 }
 
-function validateSearch(term) {
-	var search = term;
-	if (term == null || term == '') {
+function validateSearch() {
+	var x = document.forms["searchForm"]["search"].value;
+	if (!x.trim()) {
 		alert("You must search for something!");
+		return false;
+	}
+}
+
+function validateItem() {
+	var x = document.forms["post-offer"]["item"].value;
+	if (!x.trim()) {
+		alert("You must give an item name!");
+		return false;
 	}
 }

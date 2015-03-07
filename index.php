@@ -25,7 +25,6 @@ $startpage = ($page-1)*$perpage;
 	<title>PR Market, Alpha 0.0.1</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<script src="javascript/validate.js"></script>
-	</script>
 </head>
 
 <noscript>
@@ -43,9 +42,9 @@ $startpage = ($page-1)*$perpage;
 		<ul class="nav">
 			<li><a href="#">Home</a></li>
 			<li><a href="#">Forums</a></li>
-			<li><form action="search.php" method="GET">
-				<input type="text" name="search" placeholder="Search" required>
-				<input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>
+			<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">
+				<input type="text" name="search" placeholder="Search" maxlength="25">
+				<input type="submit" value="Submit"></form></li>
 		</ul>
 		<?php
 			$now = new DateTime();
@@ -133,7 +132,7 @@ $startpage = ($page-1)*$perpage;
                 	die();
                 }
 	       	 	if (!$context['user']['is_guest']) {
-					echo '<form action="backend/post.php" method="POST" id="post-offer">';;
+					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validateItem()">';;
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
 		       	 			echo '<div class="offer-title">Offer Type</div>';
