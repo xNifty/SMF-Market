@@ -78,6 +78,7 @@ $startpage = ($page-1)*$perpage;
 			*	- Searching
 			*	- User deletion of their entries
 			*	- Insert new offers
+			*	- Pagination
 			* IGNORED:
 			*	- On page login / logout (SMF SSI actually makes this stupidly annoying)
 			*   - Sort by buying or selling (search page only, index is always newest->oldest)
