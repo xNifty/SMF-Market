@@ -1,5 +1,6 @@
 <?php
 require_once('../../smf/SSI.php');
+is_not_guest("You don't have access to this.");
 include("backend/base.php");
 
 $DBServer = 'localhost';

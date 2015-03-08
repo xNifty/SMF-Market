@@ -1,5 +1,6 @@
 <?php
 require_once('../../smf/SSI.php');
+is_not_guest("You need to be logged in to post an offer.");
 include("backend/base.php");
 
 $DBServer = 'localhost';

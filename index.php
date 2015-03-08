@@ -120,7 +120,7 @@ $startpage = ($page-1)*$perpage;
 	                           if ($username == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])))
 	                            echo '<td><form action="backend/delete.php" method="POST" id="delete" onsubmit="window.location.reload();">
 	                                    <form type="submit" value="Delete">
-	                                    </form><button type="submit" form="delete" value="'.$id.'" name="id">Delete</button></td>';
+	                                    </form><button type="submit" form="delete" value="'.$id.'" name="id" onclick="return confirm(\'Are you sure you wish to delete this entry?\');">Delete</button></td>';
 	                        else
 	                            echo '<td><button type="button" disabled>Delete</button></td>';
 	                        echo '</tr>';
