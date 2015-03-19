@@ -16,5 +16,6 @@ if (@$autocomplete = $conn->prepare("SELECT * FROM `list` WHERE `name` LIKE ?"))
 		$json[] = array('value'=> ucwords($row['name']), 'label'=> ucwords($row['name']));
 	}
 }
+sort($json);
 echo json_encode($json);
 ?>
