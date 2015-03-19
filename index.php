@@ -1,6 +1,5 @@
 <?php
 require_once('../smf/SSI.php');
-include("backend/base.php");
 
 $DBServer = 'localhost';
 $DBUser = 'root';
@@ -25,6 +24,17 @@ $startpage = ($page-1)*$perpage;
 	<title>PR Market, Alpha 0.0.1</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<script src="javascript/validate.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#item").autocomplete({
+                    source:'backend/base.php',
+                    minLength:2
+                });
+            });
+    </script>
 </head>
 
 <noscript>
@@ -133,14 +143,14 @@ $startpage = ($page-1)*$perpage;
                 	die();
                 }
 	       	 	if (!$context['user']['is_guest']) {
-					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validateItem()">';;
+					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validateItem()">';
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
 		       	 			echo '<div class="offer-title">Offer Type</div>';
 		       	 			echo '<select offer="offerType" name="offer" required> <option value="" disabled selected>Please Select One</option> <option value="Buying">Buying</option> <option value="Selling">Selling</option></select>';	       	 			
 		       	 			
 		       	 			echo '<div class="offer-title">Item Name</div>';
-		       	 			echo '<input type ="text" name="item" maxlength="25" placeholder="Item Name" required>';
+		       	 			echo '<input type ="text" id="item" name="item" maxlength="25" placeholder="Item Name" required>';
 							
 							echo '<div class="offer-title">Price Per Item</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="9999" placeholder="Price Per Item (max 9999)" required>';
