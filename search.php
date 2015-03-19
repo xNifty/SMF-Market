@@ -15,6 +15,11 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 $startpage = ($page-1)*$perpage;
+
+if (!isset($_GET['search']))
+    header("Location: ./index.php");
+if (empty($_GET['search']))
+    header("Location: ./index.php");
 ?>
 <!doctype HTML>
 <html>

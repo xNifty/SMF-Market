@@ -26,7 +26,7 @@ $startpage = ($page-1)*$perpage;
 	<script src="javascript/validate.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     <script type="text/javascript">
         $(document).ready(function() {
             $("#item").autocomplete({
@@ -104,7 +104,6 @@ $startpage = ($page-1)*$perpage;
 	                @$num_rows = $offers->num_rows;
 	                if ($num_rows == 0)
 	                    echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
-	                    //echo '<div class="center_text">No Results Found For "'.$search.'"</div>';
 	                else {
 						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
 						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
