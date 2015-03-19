@@ -31,15 +31,6 @@ $startpage = ($page-1)*$perpage;
             $("#results").tablesorter({headers: { 0: { sorter: false}, 6: {sorter: false}}});
         });
     </script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#item").autocomplete({
-                source:'backend/base.php', minLength:1
-            });
-        });
-    </script>
 </head>
 <noscript>
     <style type="text/css">
