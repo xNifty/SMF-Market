@@ -1,6 +1,5 @@
 <?php
 require_once('../smf/SSI.php');
-include("backend/base.php");
 
 $DBServer = 'localhost';
 $DBUser = 'root';
