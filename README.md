@@ -6,6 +6,12 @@ About
 ------ 
 Started as a boredom project, continued as a way to practice PHP and learn the better practices for MySQLi.
 
+Requirements
+------
+1. Simple Machines Forum Software (this makes use of the SMF SSI)
+2. MySQL Database
+3. The MySQLnd (MySQL Native Driver (for get_result()))
+
 Todo
 ------ 
 1. Finish all class specific TODOs
