@@ -97,6 +97,7 @@ if (empty($_GET['search']))
                     echo '<div class="alert-box error"><span>ERROR: </span>No Results Found For <div class="special_word">'.$display.'</div></div>';
                 else {
                     echo '<div class="alert-box success"><span>SUCCESS: </span>Found '.$num_rows.' results for <div class="special_word">'.$display.'</div></div>';
+                    echo '<div class="header_text notice">Notice: we do not confirm any one person owns the item they are "selling"; please report those abusing the system. <br /></div>';
                     echo '<table id="results" class="tablesorter">';
                         echo '<thead>';
                         echo '<tr>';
