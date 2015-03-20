@@ -108,6 +108,7 @@ $startpage = ($page-1)*$perpage;
 						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
 						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
 						echo '<div class="header_text">This page only displays 25 offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
+						echo '<div class="header_text notice">Notice: we do not confirm any one person owns the item they are "selling"; please report those abusing the system. <br /></div>';
 						echo '<hr>';
 	                    echo '<table class="displayoffers">';
 	                        echo '<tr>';

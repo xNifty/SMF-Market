@@ -63,6 +63,8 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
 				echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
 				exit();
 			}
-    	}
+    	} else {
+            header("Location: ../");
+        }
     }
 ?>

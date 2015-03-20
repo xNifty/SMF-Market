@@ -101,6 +101,10 @@ table.displayoffers {
 .header_text a:visited {
     color: blue !important;
 }
+.notice {
+    color: red;
+    font-weight: bold;
+}
 /* END HEADER */
 
 .alert-box {
@@ -134,11 +138,13 @@ table.displayoffers {
     border:1px solid #f2c779;
     margin-bottom: 10px;
 }
+/*
 .notice {
     background:#e3f7fc no-repeat 10px 75%;
     border:1px solid #8ed9f6;
     margin-bottom: 10px;
 }
+*/
 
 /* PAGINATION */
 .pag_text {
