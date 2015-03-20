@@ -16,10 +16,12 @@ if (isset($_GET['page'])) {
 }
 $startpage = ($page-1)*$perpage;
 
-if (!isset($_GET['search']))
+if (!isset($_GET['search'])) {
     header("Location: ./index.php");
-if (empty($_GET['search']))
+}
+if (empty($_GET['search'])) {
     header("Location: ./index.php");
+}
 ?>
 <!doctype HTML>
 <html>
@@ -49,7 +51,7 @@ if (empty($_GET['search']))
     <ul class="nav">
         <li><a href="./">Home</a></li>
         <li><a href="#">Forums</a></li>
-        <li><form action="search.php" method="POST">
+        <li><form action="search.php" method="GET">
             <input type="text" name="search" placeholder="Search">
             <input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>
     </ul>

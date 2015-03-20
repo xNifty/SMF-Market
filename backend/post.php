@@ -28,7 +28,7 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
     /*
     * Here is the MySQLi database posting
     * TODO:
-    *   - ???
+    *   - No duplicate entries from one author
     * DONE:
     *   - Post an offer
     */
