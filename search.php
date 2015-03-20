@@ -25,7 +25,7 @@ if (empty($_GET['search']))
 <html>
 <head>
     <meta charset="utf-8">
-    <title>PR Market, Alpha 0.0.1</title>
+    <title>Market - Search</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/table.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="javascript/jquery-latest.js"></script>
