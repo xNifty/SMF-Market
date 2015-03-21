@@ -31,7 +31,7 @@ $startpage = ($page-1)*$perpage;
         $(document).ready(function() {
             $("#item").autocomplete({
                     source:'backend/base.php',
-                    minLength:2
+                    minLength:3
                 });
             });
     </script>
@@ -84,6 +84,7 @@ $startpage = ($page-1)*$perpage;
 			* Here is the MySQLi database loading and offer displaying; only shows 25 offers per page
 			* TODO:
 			*	- Send private message to user on forums by clicking their name (logged in users only)
+			*	- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
 			* DONE:
 			*	- Searching
 			*	- User deletion of their entries
