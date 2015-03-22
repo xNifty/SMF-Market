@@ -85,6 +85,7 @@ $startpage = ($page-1)*$perpage;
 			* TODO:
 			*	- Send private message to user on forums by clicking their name (logged in users only)
 			*	- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
+			*	- Report bug(s) option
 			* DONE:
 			*	- Searching
 			*	- User deletion of their entries
