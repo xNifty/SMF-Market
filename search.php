@@ -149,8 +149,9 @@ if (empty($_GET['search'])) {
             }
             $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
             echo '<div class="footer">All times are Eastern</div>';
-            echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-            echo '<div class="footer">Market written by yolocatz (aka nifty); &copy; 2015 yolocatz and Project Rainbow</div>';
+            if (in_array_any($allowed_groups, $user_info['groups']))
+                echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
+            echo '<div class="footer">Market written and maintained by yolocatz; &copy; 2015 yolocatz</div>';
         }
     ?>
 </body>
