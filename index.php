@@ -66,7 +66,7 @@ $startpage = ($page-1)*$perpage;
 			echo '<div class="header_img"><img src="images/header.png" alt="market header"></div>';
 
 			if (!$context['user']['is_guest']) {
-				echo '<div class="center_text_header">Welcome, '.($context['user']['username']).'!</div>';
+				echo '<div class="center_text_header">Welcome, '.($context['user']['name']).'!</div>';
 			 } else {
 				echo '<div class="center_text_header">Welcome, Guest!</div>';
 				echo '<div class="header_text">You must be logged into the <a href="#">forums</a> to make use of posting offers<br /></div>';
@@ -155,7 +155,7 @@ $startpage = ($page-1)*$perpage;
 		       	 			echo '<input type ="text" id="item" name="item" maxlength="25" placeholder="Item Name" required>';
 							
 							echo '<div class="offer-title">Price Per Item</div>';
-		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="2147483647" placeholder="Price Per Item (max 2147483647)" required>';
+		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="2147483647" placeholder="Price Per Item" required>';
 		       	 			
 		       	 			echo '<div class="offer-title">Amount</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="amount" min="1" max="9999" placeholder="Amount to Sell (max 9999)" required>';
