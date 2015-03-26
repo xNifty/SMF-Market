@@ -107,8 +107,8 @@ if (empty($_GET['search'])) {
                             echo '<th>User</th>';
                             echo '<th>Offer Type</th>';
                             echo '<th>Item</th>';
-                            echo '<th>Price</th>';
                             echo '<th>Amount</th>';
+                            echo '<th>Price</th>';
                             echo '<th>Date</th>';
                             echo '<th>Delete</th>';
                         echo '</tr>';

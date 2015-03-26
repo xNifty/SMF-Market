@@ -117,8 +117,8 @@ $startpage = ($page-1)*$perpage;
 	                            echo '<th>User</th>';
 	                            echo '<th>Offer Type</th>';
 	                            echo '<th>Item</th>';
-	                            echo '<th>Price</th>';
 	                            echo '<th>Amount</th>';
+	                            echo '<th>Price</th>';
 	                            echo '<th>Date</th>';
 	                            echo '<th>Delete</th>';
 	                        echo '</tr>';
@@ -155,7 +155,7 @@ $startpage = ($page-1)*$perpage;
 		       	 			echo '<input type ="text" id="item" name="item" maxlength="25" placeholder="Item Name" required>';
 							
 							echo '<div class="offer-title">Price Per Item</div>';
-		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="9999" placeholder="Price Per Item (max 9999)" required>';
+		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="2147483647" placeholder="Price Per Item (max 2147483647)" required>';
 		       	 			
 		       	 			echo '<div class="offer-title">Amount</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="amount" min="1" max="9999" placeholder="Amount to Sell (max 9999)" required>';
