@@ -1,8 +1,5 @@
 <?php
-$DBServer = 'localhost';
-$DBUser = 'root';
-$DBPass = '';
-$DBName = 'items';
+include("backend/database.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 ?>
 <?php

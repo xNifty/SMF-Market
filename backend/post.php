@@ -2,13 +2,8 @@
 require_once('../../smf/SSI.php');
 is_not_guest("You need to be logged in to post an offer.");
 
-$DBServer = 'localhost';
-$DBUser = 'root';
-$DBPass = '';
-$DBName = 'market';
-$DBItems = 'items';
-
 $SMFUser = $context['user']['username'];
+include("backend/database.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 @$valid = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 $now = new DateTime();

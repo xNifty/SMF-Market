@@ -1,12 +1,8 @@
 <?php
 require_once('../smf/SSI.php');
 
-$DBServer = 'localhost';
-$DBUser = 'root';
-$DBPass = '';
-$DBName = 'market';
-
 $SMFUser = $context['user']['username'];
+include("backend/database.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 $perpage = 25;
 if (isset($_GET['page'])) {
