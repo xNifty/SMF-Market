@@ -1,6 +1,6 @@
 <?php
-include("backend/database.php");
-@$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
+include("database.php");
+@$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 ?>
 <?php
 $search = "%{$_GET['term']}%";

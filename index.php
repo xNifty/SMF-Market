@@ -69,7 +69,7 @@ $startpage = ($page-1)*$perpage;
 				echo '<hr>';
 			}
 
-			/* 
+			/*
 			* Allowed moderation group IDs
 			* Administrators   : 1
 			* Global Moderator : 2
@@ -79,16 +79,16 @@ $startpage = ($page-1)*$perpage;
 			/*
 			* Here is the MySQLi database loading and offer displaying; only shows 25 offers per page
 			* TODO:
-			*	- Send private message to user on forums by clicking their name (logged in users only)
-			*	- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
-			*	- Report bug(s) option
+			*		- Send private message to user on forums by clicking their name (logged in users only)
+			*		- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
+			*		- Report bug(s) option
 			* DONE:
-			*	- Searching
-			*	- User deletion of their entries
-			*	- Insert new offers
-			*	- Pagination
+			*		- Searching
+			*		- User deletion of their entries
+			*		- Insert new offers
+			*		- Pagination
 			* IGNORED:
-			*	- On page login / logout (SMF SSI actually makes this stupidly annoying)
+			*		- On page login / logout (SMF SSI actually makes this stupidly annoying)
 			*   - Sort by buying or selling (search page only, index is always newest->oldest)
 			*/
 	       	if ($conn->connect_error) {
@@ -130,9 +130,9 @@ $startpage = ($page-1)*$perpage;
 	                            echo '<td><form action="backend/delete.php" method="POST" id="delete" onsubmit="window.location.reload();">
 	                                    <form type="submit" value="Delete">
 	                                    </form><button type="submit" form="delete" value="'.$id.'" name="id" onclick="return confirm(\'Are you sure you wish to delete this entry?\');">Delete</button></td>';
-	                        else
-	                            echo '<td><button type="button" disabled>Delete</button></td>';
-	                        echo '</tr>';
+	                        	else
+	                          	echo '<td><button type="button" disabled>Delete</button></td>';
+	                    	echo '</tr>';
 	                    }
 	                    echo '</table>';
                 	}
@@ -145,17 +145,17 @@ $startpage = ($page-1)*$perpage;
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
 		       	 			echo '<div class="offer-title">Offer Type</div>';
-		       	 			echo '<select offer="offerType" name="offer" required> <option value="" disabled selected>Please Select One</option> <option value="Buying">Buying</option> <option value="Selling">Selling</option></select>';	       	 			
-		       	 			
+		       	 			echo '<select offer="offerType" name="offer" required> <option value="" disabled selected>Please Select One</option> <option value="Buying">Buying</option> <option value="Selling">Selling</option></select>';
+
 		       	 			echo '<div class="offer-title">Item Name</div>';
 		       	 			echo '<input type ="text" id="item" name="item" maxlength="25" placeholder="Item Name" required>';
-							
+
 							echo '<div class="offer-title">Price Per Item</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="price" min="1" max="2147483647" placeholder="Price Per Item" required>';
-		       	 			
+
 		       	 			echo '<div class="offer-title">Amount</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="amount" min="1" max="9999" placeholder="Amount to Sell (max 9999)" required>';
-		       	 			
+
 		       	 			echo '<div class="offer_submit"><input type="submit" form="post-offer" name="post-offer"></div>';
 		       	 		echo '</div>';
 			       	echo '</form>';
