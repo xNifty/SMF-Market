@@ -22,3 +22,8 @@ Todo
 Scratched
 ------
 1. ???
+
+Copyright
+------
+	SMF Market - simple item marketplace tied into SMF
+    Copyright (C) {2015} Ryan 'iBeNifty' Malacina

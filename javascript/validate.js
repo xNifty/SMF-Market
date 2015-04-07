@@ -1,3 +1,9 @@
+/* 
+*	{SMF Market - simple item marketplace tied into SMF}
+*    Copyright (C) {2015}  {Ryan 'iBeNifty' Malacina}
+*	 You can find the full license included with these files.
+*/
+
 function isNormalInteger(str) {
     var n = ~~Number(str);
     return String(n) === str && n >= 0;
