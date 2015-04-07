@@ -27,4 +27,6 @@ Scratched
 Copyright
 ------
 SMF Market - simple item marketplace tied into SMF  
-Copyright (C) {2015} Ryan 'iBeNifty' Malacina
+Copyright (C) {2015} Ryan 'iBeNifty' Malacina  
+  
+Please, I am still learning all about this. If you notice a vulnerability, etc. please contact me so I can learn how to prevent it in the future.
