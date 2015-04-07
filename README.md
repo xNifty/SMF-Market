@@ -18,6 +18,7 @@ Todo
 2. Add banned groups list (same as moderating groups, but as a banned group)
 3. Potentially tie in through panel within SMF for changing groups and things far easier
 4. Rewrite to use AJAX for live updating without the need to refresh the page (homepage only, not the search page)
+5. Add sources list to thank the creators of some images used
 
 Scratched
 ------
@@ -25,5 +26,5 @@ Scratched
 
 Copyright
 ------
-	SMF Market - simple item marketplace tied into SMF
-    Copyright (C) {2015} Ryan 'iBeNifty' Malacina
+SMF Market - simple item marketplace tied into SMF
+Copyright (C) {2015} Ryan 'iBeNifty' Malacina
