@@ -1,12 +1,8 @@
 <?php
-require_once('../../smf/SSI.php');
+include("config.php");
+require_once($level2);
 is_not_guest("You don't have access to this.");
 include("base.php");
-
-$DBServer = 'localhost';
-$DBUser = 'root';
-$DBPass = '';
-$DBName = 'market';
 
 $SMFUser = $context['user']['username'];
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);

@@ -1,9 +1,9 @@
 <?php
-require_once('../smf/SSI.php');
+include("backend/config.php");
+require_once($level1);
 
 $SMFUser = $context['user']['username'];
-$perpage = 25;
-include("backend/database.php");
+
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 
 if (isset($_GET['page'])) {
@@ -45,27 +45,27 @@ $startpage = ($page-1)*$perpage;
 
 <body>
 	<wrapper>
-		<ul class="nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Forums</a></li>
-			<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">
-				<input type="text" name="search" placeholder="Search" maxlength="25">
-				<input type="submit" value="Submit"></form></li>
-		</ul>
 		<?php
+			echo '<ul class="nav">';
+				echo '<li><a href="#">Home</a></li>';
+				echo '<li><a href="'.$forums.'">Forums</a></li>';
+				echo '<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">';
+					echo '<input type="text" name="search" placeholder="Search" maxlength="25">';
+					echo '<input type="submit" value="Submit"></form></li>';
+			echo '</ul>';
 			$now = new DateTime();
 			$now->setTimezone(new DateTimeZone('America/Detroit'));
 			function in_array_any($needles, $haystack) {
 				return !!array_intersect($needles, $haystack);
 			}
 
-			echo '<div class="header_img"><img src="images/header.png" alt="market header"></div>';
+			echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
 
 			if (!$context['user']['is_guest']) {
 				echo '<div class="center_text_header">Welcome, '.($context['user']['name']).'!</div>';
 			 } else {
 				echo '<div class="center_text_header">Welcome, Guest!</div>';
-				echo '<div class="header_text">You must be logged into the <a href="#">forums</a> to make use of posting offers<br /></div>';
+				echo '<div class="header_text">You must be logged into the <a href="'.$forums.'">forums</a> to make use of posting offers<br /></div>';
 				echo '<hr>';
 			}
 
@@ -77,7 +77,7 @@ $startpage = ($page-1)*$perpage;
 			$allowed_groups = array(1, 2);
 
 			/*
-			* Here is the MySQLi database loading and offer displaying; only shows 25 offers per page
+			* Here is the MySQLi database loading and offer displaying
 			* TODO:
 			*		- Send private message to user on forums by clicking their name (logged in users only)
 			*		- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
@@ -105,7 +105,7 @@ $startpage = ($page-1)*$perpage;
 	                else {
 						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
 						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
-						echo '<div class="header_text">This page only displays 25 offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
+						echo '<div class="header_text">This page only displays '.$perpage.' offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
 						echo '<div class="header_text notice">Notice: we do not confirm any one person owns the item they are "selling"; please report those abusing the system. <br /></div>';
 						echo '<hr>';
 	                    echo '<table class="displayoffers">';
@@ -176,7 +176,7 @@ $startpage = ($page-1)*$perpage;
 	       	 	echo '<div class="footer">All times are Eastern</div>';
 	       	 	if (in_array_any($allowed_groups, $user_info['groups']))
 	       			echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-	       		echo '<div class="footer">Market written and maintained by yolocatz; &copy; 2015 yolocatz</div>';
+	       		echo '<div class="footer">Market written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
 	       	}
 	    ?>
 	</wrapper>

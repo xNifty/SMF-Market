@@ -1,5 +1,5 @@
 <?php
-include("database.php");
+include("config.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 ?>
 <?php

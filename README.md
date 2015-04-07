@@ -17,7 +17,8 @@ Todo
 1. Finish all class specific TODOs
 2. Add banned groups list (same as moderating groups, but as a banned group)
 3. Potentially tie in through panel within SMF for changing groups and things far easier
+4. Rewrite to use AJAX for live updating without the need to refresh the page (homepage only, not the search page)
 
 Scratched
 ------
-1. Create database of all RS 718 items (no easy dump access)
+1. ???

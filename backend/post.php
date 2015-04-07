@@ -1,9 +1,9 @@
 <?php
-require_once('../../smf/SSI.php');
+include("config.php");
+require_once($level2);
 is_not_guest("You need to be logged in to post an offer.");
 
 $SMFUser = $context['user']['username'];
-include("database.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 @$valid = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 $now = new DateTime();

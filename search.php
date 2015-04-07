@@ -1,10 +1,10 @@
 <?php
-require_once('../smf/SSI.php');
+include("backend/config.php");
+require_once($level1);
 
 $SMFUser = $context['user']['username'];
-include("backend/database.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
-$perpage = 25;
+
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
@@ -44,22 +44,26 @@ if (empty($_GET['search'])) {
     </div>
 </noscript>
 <body>
-    <ul class="nav">
-        <li><a href="./">Home</a></li>
-        <li><a href="#">Forums</a></li>
-        <li><form action="search.php" method="GET">
-            <input type="text" name="search" placeholder="Search">
-            <input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>
-    </ul>
     <?php
+        echo '<ul class="nav">';
+            echo '<li><a href="./">Home</a></li>';
+            echo '<li><a href="'.$forums.'">Forums</a></li>';
+            echo '<li><form action="search.php" method="GET">';
+                echo '<input type="text" name="search" placeholder="Search">';
+                echo '<input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>';
+        echo '</ul>';
         function in_array_any($needles, $haystack) {
             return !!array_intersect($needles, $haystack);
         }
+
+        echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
+
         if (!$context['user']['is_guest']) {
             echo '<div class="center_text_header">Welcome, '.($context['user']['username']).'!</div>';
             echo '<hr>';
          } else {
-            echo '<div class="center_text">Welcome guest.</div>';
+            echo '<div class="center_text_header">Welcome, Guest!</div>';
+            echo '<div class="header_text">You must be logged into the <a href="'.$forums.'">forums</a> to make use of posting offers<br /></div>';
             echo '<hr>';
         }
 
@@ -147,7 +151,7 @@ if (empty($_GET['search'])) {
             echo '<div class="footer">All times are Eastern</div>';
             if (in_array_any($allowed_groups, $user_info['groups']))
                 echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-            echo '<div class="footer">Market written and maintained by yolocatz; &copy; 2015 yolocatz</div>';
+            echo '<div class="footer">Market written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
         }
     ?>
 </body>
