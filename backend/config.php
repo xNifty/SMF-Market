@@ -11,10 +11,12 @@
 *	you can .gitignore this file and not have your paths get screwed up each time an update is released.
 */
 
-// Relative URL for the SSI.php
-/* 
+/*
+* Relative URL for the SSI.php 
 * This is important: accessing the SSI directly through a URL is a big no-no and SMF will not allow for it.
 * Instead, you need to access it relative to the market directory.
+* So, let's say SMF is at public_html/smf and the market is at public_html/market; this means that to access the SSI from
+*	index and search, you must go one level back and for delete and post two levels back.
 */
 $level1 = '../smf/SSI.php'; // This is one level above any file making use of it (in this case: index.php and search.php)
 $level2 = '../../smf/SSI.php'; // This is two levels above any file making use of it (in this case: delete.php and post.php)
