@@ -26,5 +26,5 @@ Scratched
 
 Copyright
 ------
-SMF Market - simple item marketplace tied into SMF
+SMF Market - simple item marketplace tied into SMF  
 Copyright (C) {2015} Ryan 'iBeNifty' Malacina
