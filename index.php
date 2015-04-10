@@ -84,6 +84,12 @@ $startpage = ($page-1)*$perpage;
 			$allowed_groups = array(1, 2);
 
 			/*
+			* Banned Group ID - set the ID of the banned user group here and place market banned users in this group (as an additional membergroup)
+			* Banned ID : ?
+			*/
+			$banned_groups =  array(-9999);
+
+			/*
 			* Here is the MySQLi database loading and offer displaying
 			* TODO:
 			*		- Send private message to user on forums by clicking their name (logged in users only)
@@ -147,7 +153,7 @@ $startpage = ($page-1)*$perpage;
                 	echo 'Something broke...contact the web admin.';
                 	die();
                 }
-	       	 	if (!$context['user']['is_guest']) {
+	       	 	if (!$context['user']['is_guest'] and (!in_array_any($banned_groups, $user_info['groups']))) {
 					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validateItem()">';
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
@@ -166,6 +172,10 @@ $startpage = ($page-1)*$perpage;
 		       	 			echo '<div class="offer_submit"><input type="submit" form="post-offer" name="post-offer"></div>';
 		       	 		echo '</div>';
 			       	echo '</form>';
+		       	} else if (in_array_any($banned_groups, $user_info['groups'])) {
+		       		echo '<div class="new_offer">';
+		       		echo '<div class="banned">You have been banned from using the market. You may appeal at [PLACE LINK HERE]</div>';
+		       		echo '</div>';
 		       	}
 				if (@$pagin = $conn->prepare("SELECT * FROM `entries`")) {
 					@$pagin->execute();
