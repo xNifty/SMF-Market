@@ -42,6 +42,10 @@ $startpage = ($page-1)*$perpage;
 				$('#listitems').load('backend/list_offers.php');
 			}, 3000); // the "3000" here refers to the time to refresh the div.  it is in milliseconds. 
 		});
+
+		$(window).load(function() {
+			$('#dvLoading').fadeOut(3000);
+		});
     </script>
 </head>
 
@@ -107,7 +111,8 @@ $startpage = ($page-1)*$perpage;
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
 	       		exit();
 	       	 } else {
-	       	 	echo '<div id="listitems">Loading offers...</div>';
+	       	 	echo '<div id ="dvLoading"></div>';
+	       	 	echo '<div id="listitems"></div>';
 	       	 	$time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
 	       	 	echo '<div class="footer">All times are Eastern</div>';
 	       	 	if (in_array_any($allowed_groups, $user_info['groups']))
