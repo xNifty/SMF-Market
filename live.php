@@ -23,7 +23,7 @@ $startpage = ($page-1)*$perpage;
 <!doctype HTML>
 <head>
 	<meta charset="utf-8">
-	<title>Market - Home</title>
+	<title>Market - Live Feed</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<script src="javascript/validate.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
