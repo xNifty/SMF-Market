@@ -1,11 +1,9 @@
-<!-- 
+<?php
+/*
 	{SMF Market - simple item marketplace tied into SMF}
     Copyright (C) {2015}  {Ryan 'iBeNifty' Malacina}
     You can find the full license included with these files.
--->
-
-<?php
-
+*/
 /*
 * So I set some random variables in here that get used all over the place. The reason I am doing this is so that
 *	you can .gitignore this file and not have your paths get screwed up each time an update is released.

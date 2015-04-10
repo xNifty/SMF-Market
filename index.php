@@ -31,11 +31,11 @@ $startpage = ($page-1)*$perpage;
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#item").autocomplete({
-                    source:'backend/base.php',
-                    minLength:3
-                });
+            $("input#item").autocomplete({
+            	source: "backend/base.php",
+                minLength:3,
             });
+        });
     </script>
 </head>
 
@@ -55,6 +55,7 @@ $startpage = ($page-1)*$perpage;
 			echo '<ul class="nav">';
 				echo '<li><a href="#">Home</a></li>';
 				echo '<li><a href="'.$forums.'">Forums</a></li>';
+				echo '<li><a href="/live.php">Live Feed</a></li>';
 				echo '<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">';
 					echo '<input type="text" name="search" placeholder="Search" maxlength="25">';
 					echo '<input type="submit" value="Submit"></form></li>';
@@ -95,7 +96,7 @@ $startpage = ($page-1)*$perpage;
 			*		- Pagination
 			* IGNORED:
 			*		- On page login / logout (SMF SSI actually makes this stupidly annoying)
-			*   - Sort by buying or selling (search page only, index is always newest->oldest)
+			*		- Sort by buying or selling (search page only, index is always newest->oldest)
 			*/
 	       	if ($conn->connect_error) {
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';

@@ -1,16 +1,9 @@
-<!-- 
-	{SMF Market - simple item marketplace tied into SMF}
-    Copyright (C) {2015}  {Ryan 'iBeNifty' Malacina}
-    You can find the full license included with these files.
--->
-
 <?php
 include("config.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 ?>
 <?php
 $search = "%{$_GET['term']}%";
-$json = array();
 if (@$autocomplete = $conn->prepare("SELECT * FROM `list` WHERE `name` LIKE ?")) {
 	@$autocomplete->bind_param('s', $search);
 	@$autocomplete->execute();
@@ -19,6 +12,7 @@ if (@$autocomplete = $conn->prepare("SELECT * FROM `list` WHERE `name` LIKE ?"))
 		$json[] = array('value'=> ucwords($row['name']), 'label'=> ucwords($row['name']));
 	}
 }
+header('Content-Type: application/json');
 sort($json);
 echo json_encode($json);
 ?>
