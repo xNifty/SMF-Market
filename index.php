@@ -76,23 +76,10 @@ $startpage = ($page-1)*$perpage;
 				echo '<hr>';
 			}
 
-			/*
-			* Allowed moderation group IDs
-			* Administrators   : 1
-			* Global Moderator : 2
-			*/
-			$allowed_groups = array(1, 2);
-
-			/*
-			* Banned Group ID - set the ID of the banned user group here and place market banned users in this group (as an additional membergroup)
-			* Banned ID : ?
-			*/
-			$banned_groups =  array(-9999);
 
 			/*
 			* Here is the MySQLi database loading and offer displaying
 			* TODO:
-			*		- Send private message to user on forums by clicking their name (logged in users only)
 			*		- Report an entry if it is fake, etc. Log the reported and reportee to prevent fake report abuse
 			*		- Report bug(s) option
 			* DONE:
@@ -100,7 +87,9 @@ $startpage = ($page-1)*$perpage;
 			*		- User deletion of their entries
 			*		- Insert new offers
 			*		- Pagination
+			* 		- Banned user group
 			* IGNORED:
+			*		- Send private message to user on forums by clicking their name (logged in users only)
 			*		- On page login / logout (SMF SSI actually makes this stupidly annoying)
 			*		- Sort by buying or selling (search page only, index is always newest->oldest)
 			*/

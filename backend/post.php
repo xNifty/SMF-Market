@@ -19,12 +19,6 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
 	function in_array_any($needles, $haystack) {
 		return !!array_intersect($needles, $haystack);
 	}
-    /* 
-    * Allowed moderation group IDs
-    * Administrators   : 1
-    * Global Moderator : 2
-    */
-    $allowed_groups = array(1, 2);
 
     /*
     * Here is the MySQLi database posting
@@ -58,6 +52,9 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
     	if ((!$context['user']['is_guest']) and ($legalPost == True)) {
 	    	if (@$offers = $conn->prepare("INSERT INTO entries(`offerType`, `Username`, `Item`, `Amount`, `Price`, `postDate`) VALUES (?, ?, ?, ?, ?, ?)")) {
 				@$offers->bind_param('ssssss', $_POST['offer'], $SMFUser, strtolower($_POST['item']), $_POST['amount'], $_POST['price'], $now->format('Y-m-d H:i:s'));
+                $string = "POSTED OFFER: ".$_POST['offer']." | ".$SMFUser." | ".strtolower($_POST['item'])." | ".$_POST['amount']." | ".$_POST['price']." | ".$now->format('Y-m-d H:i:s')."\n";
+                $filename = $now->format('Y-m-d');
+                file_put_contents("../logs/".$filename, $string, FILE_APPEND | LOCK_EX);
 				@$offers->execute();
 				header("Location: ../");
 	    	} else {

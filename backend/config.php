@@ -39,4 +39,17 @@ $forums = "#";
 
 // Offers shown per page
 $perpage = 25;
+
+/*
+* Allowed moderation group IDs
+* Administrators   : 1
+* Global Moderator : 2
+*/
+$allowed_groups = array(1, 2);
+
+/*
+* Banned Group ID - set the ID of the banned user group here and place market banned users in this group (as an additional membergroup)
+* Banned ID : ?
+*/
+$banned_groups =  array(-9999);
 ?>

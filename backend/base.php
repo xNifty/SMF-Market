@@ -3,7 +3,7 @@ include("config.php");
 @$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBItems);
 ?>
 <?php
-$search = "%{$_GET['term']}%";
+@$search = "%{$_GET['term']}%";
 if (@$autocomplete = $conn->prepare("SELECT * FROM `list` WHERE `name` LIKE ?")) {
 	@$autocomplete->bind_param('s', $search);
 	@$autocomplete->execute();
