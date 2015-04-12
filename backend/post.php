@@ -29,7 +29,7 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
     */
     $entry = $_POST['post-offer'];
     $legalPost = False;
-    if (!$context['user']['is_guest']) {
+    if (!$context['user']['is_guest'] and $useItemVarification == "True") {
         if (@$checkValid = $valid->prepare("SELECT * FROM `list` WHERE `name` = ?")) {
             @$checkValid->bind_param('s', strtolower($_POST['item']));
             @$checkValid->execute();
@@ -42,6 +42,8 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
         } else {
             header("Location: ../");
         }
+    } else if (!$context['user']['is_guest'] and $useItemVarification == "False") {
+        $legalPost = True;
     } else {
         header("Location: ../");
     }

@@ -52,4 +52,17 @@ $allowed_groups = array(1, 2);
 * Banned ID : ?
 */
 $banned_groups =  array(-9999);
+
+/*
+* useItemDB
+*	- Allows for autocompletion
+*/
+$useItemDB = True;
+
+/*
+* useItemVarification
+* 	- use the Item Database to verify items are real
+*/
+$useItemVarification = True;
+
 ?>
