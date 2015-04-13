@@ -33,13 +33,13 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
         echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
         exit();
      } else {
-        @$user = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `ID` = ?");
+        @$user = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `ID` = ?");
         @$user->bind_param('i', $delete);
         @$user->execute();
         @$user->store_result();
-        @$user->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+        @$user->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
         $user->fetch();
-        if ($username == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])) and (!$context['user']['is_guest'])) {
+        if ($forumName == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])) and (!$context['user']['is_guest'])) {
             echo 'offer: '.$offerType." | delete:".$delete;
             $string = "DELETED OFFER: ".$offerType." | ".$username." | ".$item." | ".$amount." | ".$price." | ".$postDate."\n";
             $filename = $now->format('Y-m-d');
