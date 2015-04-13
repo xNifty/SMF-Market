@@ -3,10 +3,10 @@
 	include("config.php");
 	$conn = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 
-	$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT 25");
+	$offers = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT 25");
     $offers->execute();
     $offers->store_result();
-    $offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+    $offers->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
     $num_rows = $offers->num_rows;
     if ($num_rows == 0)
         echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
@@ -18,15 +18,17 @@
 		echo '<hr>';
         echo '<table class="displayoffers">';
             echo '<tr>';
-                echo '<th>User</th>';
+                echo '<th>Forum Name</th>';
+                echo '<th>Server Name</th>';
                 echo '<th>Offer Type</th>';
                 echo '<th>Item</th>';
                 echo '<th>Amount</th>';
-                echo '<th>Price</th>';
+                echo '<th>Price per Item</th>';
                 echo '<th>Date</th>';
             echo '</tr>';
         while ($offers->fetch()) {
             echo '<tr>';
+                echo '<td>'.$forumName.'</td>';
                 echo '<td>'.$username.'</td>';
                 echo '<td>'.$offerType.'</td>';
                 echo '<td>'.ucwords($item).'</td>';

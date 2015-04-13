@@ -36,7 +36,7 @@ if (empty($_GET['search'])) {
     <script type="text/javascript" src="javascript/jquery.tablesorter.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#results").tablesorter({headers: { 0: { sorter: false}, 6: {sorter: false}}});
+            $("#results").tablesorter({headers: { 0: { sorter: false}, 1: {sorter: false}, 7: { sorter: false}}});
         });
     </script>
 </head>
@@ -90,11 +90,11 @@ if (empty($_GET['search'])) {
             echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
             exit();
         } else {
-            if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
-                @$offers->bind_param('ss', $search, $search);
+            if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? OR `forumName` like ? ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
+                @$offers->bind_param('sss', $search, $search, $search);
                 @$offers->execute();
                 @$offers->store_result();
-                @$offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+                @$offers->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
                 @$num_rows = $offers->num_rows;
                 if ($num_rows == 0)
                     echo '<div class="alert-box error"><span>ERROR: </span>No Results Found For <div class="special_word">'.$display.'</div></div>';
@@ -104,11 +104,12 @@ if (empty($_GET['search'])) {
                     echo '<table id="results" class="tablesorter">';
                         echo '<thead>';
                         echo '<tr>';
-                            echo '<th>User</th>';
+                            echo '<th>Forum Name</th>';
+                            echo '<th>Server Name</th>';
                             echo '<th>Offer Type</th>';
                             echo '<th>Item</th>';
                             echo '<th>Amount</th>';
-                            echo '<th>Price</th>';
+                            echo '<th>Price Per Item</th>';
                             echo '<th>Date</th>';
                             echo '<th>Delete</th>';
                         echo '</tr>';
@@ -116,6 +117,7 @@ if (empty($_GET['search'])) {
                         echo '<tbody>';
                     while ($offers->fetch()) {
                         echo '<tr>';
+                            echo '<td>'.$forumName.'</td>';
                             echo '<td>'.$username.'</td>';
                             echo '<td>'.$offerType.'</td>';
                             echo '<td>'.ucwords($item).'</td>';

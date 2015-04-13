@@ -54,3 +54,12 @@ function validateItem() {
 		return false;
 	}
 }
+
+function validatePostForm() {
+	var x = document.forms["post-offer"]["forumname"].value;
+	var y = document.forms["post-offer"]["item"].value;
+	if (!x.trim() || !y.trim()) {
+		alert("You must fill out every field to submit an offer!");
+		return false;
+	}
+}

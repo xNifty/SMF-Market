@@ -51,13 +51,13 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
         header("Location: ../");
     }
     if ($conn->connect_error) {
-    	echo '<div class="center_text">Error occured! Please alert the web admin! Error: ' . mysqli_connect_error() . '</div>';
+    	echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
     	exit();
     } else {
     	if ((!$context['user']['is_guest']) and ($legalPost == True)) {
-	    	if (@$offers = $conn->prepare("INSERT INTO entries(`offerType`, `Username`, `Item`, `Amount`, `Price`, `postDate`) VALUES (?, ?, ?, ?, ?, ?)")) {
-				@$offers->bind_param('ssssss', $_POST['offer'], $SMFUser, strtolower($_POST['item']), $_POST['amount'], $_POST['price'], $now->format('Y-m-d H:i:s'));
-                $string = "POSTED OFFER: ".$_POST['offer']." | ".$SMFUser." | ".strtolower($_POST['item'])." | ".$_POST['amount']." | ".$_POST['price']." | ".$now->format('Y-m-d H:i:s')."\n";
+	    	if (@$offers = $conn->prepare("INSERT INTO entries(`offerType`, `forumName`, `Username`, `Item`, `Amount`, `Price`, `postDate`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+				@$offers->bind_param('sssssss', $_POST['offer'], $SMFUser, $_POST['forumname'], strtolower($_POST['item']), $_POST['amount'], $_POST['price'], $now->format('Y-m-d H:i:s'));
+                $string = "POSTED OFFER: ".$_POST['offer']." | ".$SMFUser." | ".$_POST['forumname']." | ".strtolower($_POST['item'])." | ".$_POST['amount']." | ".$_POST['price']." | ".$now->format('Y-m-d H:i:s')."\n";
                 $filename = $now->format('Y-m-d');
                 file_put_contents("../logs/".$filename, $string, FILE_APPEND | LOCK_EX);
 				@$offers->execute();

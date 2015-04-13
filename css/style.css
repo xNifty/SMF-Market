@@ -256,6 +256,7 @@ table.tablesorter .header {
     background-image: url('../images/bg.gif');
     background-repeat: no-repeat;
     background-position: center right;
+    padding-right: 15px;
 }
 table.tablesorter {
     table-layout: auto;

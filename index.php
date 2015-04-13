@@ -97,10 +97,10 @@ $startpage = ($page-1)*$perpage;
 	       		echo '<div class="center_text">Error occured! Please alert the web admin!</div>';
 	       		exit();
 	       	 } else {
-	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
+	       	 	if (@$offers = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID` DESC LIMIT $startpage, $perpage")) {
 	                @$offers->execute();
 	                @$offers->store_result();
-	                @$offers->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);
+	                @$offers->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
 	                @$num_rows = $offers->num_rows;
 	                if ($num_rows == 0)
 	                    echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
@@ -112,23 +112,25 @@ $startpage = ($page-1)*$perpage;
 						echo '<hr>';
 	                    echo '<table class="displayoffers">';
 	                        echo '<tr>';
-	                            echo '<th>User</th>';
+								echo '<th>Forum Name</th>';
+								echo '<th>Server Name</th>';
 	                            echo '<th>Offer Type</th>';
 	                            echo '<th>Item</th>';
 	                            echo '<th>Amount</th>';
-	                            echo '<th>Price</th>';
+	                            echo '<th>Price per Item</th>';
 	                            echo '<th>Date</th>';
 	                            echo '<th>Delete</th>';
 	                        echo '</tr>';
 	                    while ($offers->fetch()) {
 	                        echo '<tr>';
+	                        	echo '<td>'.$forumName.'</td>';
 	                            echo '<td>'.$username.'</td>';
 	                            echo '<td>'.$offerType.'</td>';
 	                            echo '<td>'.ucwords($item).'</td>';
 	                            echo '<td>'.number_format($amount).'</td>';
 	                            echo '<td>'.number_format($price).'</td>';
 	                            echo '<td>'.date("F j, Y / g:i a", strtotime($postDate)).'</td>';
-	                           if ($username == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])))
+	                           if ($forumName == $SMFUser OR (in_array_any($allowed_groups, $user_info['groups'])))
 	                            echo '<td><form action="backend/delete.php" method="POST" id="delete" onsubmit="window.location.reload();">
 	                                    <form type="submit" value="Delete">
 	                                    </form><button type="submit" form="delete" value="'.$id.'" name="id" onclick="return confirm(\'Are you sure you wish to delete this entry?\');">Delete</button></td>';
@@ -143,7 +145,7 @@ $startpage = ($page-1)*$perpage;
                 	die();
                 }
 	       	 	if (!$context['user']['is_guest'] and (!in_array_any($banned_groups, $user_info['groups']))) {
-					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validateItem()">';
+					echo '<form action="backend/post.php" method="POST" id="post-offer" name="post-offer" onsubmit="return validatePostForm()">';
 	   	 				echo '<div class="new_offer">';
 		       	 			echo '<div class="offer-header">Add an Offer</div>';
 		       	 			echo '<div class="offer-title">Offer Type</div>';
@@ -157,6 +159,9 @@ $startpage = ($page-1)*$perpage;
 
 		       	 			echo '<div class="offer-title">Amount</div>';
 		       	 			echo '<input type ="number" onKeyPress="return numbersonly(this, event)" name="amount" min="1" max="9999" placeholder="Amount to Sell (max 9999)" required>';
+
+		       	 			echo '<div class="offer-title">Server Username</div>';
+		       	 			echo '<input type ="text" id="forumname" name="forumname" maxlength="12" placeholder="Server Username" required>';
 
 		       	 			echo '<div class="offer_submit"><input type="submit" form="post-offer" name="post-offer"></div>';
 		       	 		echo '</div>';
