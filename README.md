@@ -24,6 +24,11 @@ Scratched
 ------
 1. ???
 
+Important
+------
+Please don't make use of this market yet - full written directions to make this work are ongoing and this is undergoing changes fairly often.
+This market does require a manual change to the SMF files to make use of the PM feature and some things will be changing over time.
+
 Copyright
 ------
 SMF Market - simple item marketplace tied into SMF  
