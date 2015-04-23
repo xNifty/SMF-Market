@@ -32,6 +32,16 @@ table.displayoffers {
     border-collapse: collapse;
 }
 
+table a:link, table a:active, table a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+table a:hover {
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
 .center_text_header {
     text-align: center;
     font-size: 3em;

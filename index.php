@@ -6,6 +6,7 @@
 
 <?php
 include("backend/config.php");
+include("backend/functions.php");
 require_once($level1);
 
 $SMFUser = $context['user']['username'];
@@ -88,8 +89,8 @@ $startpage = ($page-1)*$perpage;
 			*		- Insert new offers
 			*		- Pagination
 			* 		- Banned user group
-			* IGNORED:
 			*		- Send private message to user on forums by clicking their name (logged in users only)
+			* IGNORED:
 			*		- On page login / logout (SMF SSI actually makes this stupidly annoying)
 			*		- Sort by buying or selling (search page only, index is always newest->oldest)
 			*/
@@ -123,7 +124,7 @@ $startpage = ($page-1)*$perpage;
 	                        echo '</tr>';
 	                    while ($offers->fetch()) {
 	                        echo '<tr>';
-	                        	echo '<td>'.$forumName.'</td>';
+	                        	echo '<td><a href="'.$forums.'/index.php?action=pm;sa=send;u='.getUserID($forumName).';subject=['.$offerType.'] '.ucwords($item).'" target="_blank">'.$forumName.'</a></td>';
 	                            echo '<td>'.$username.'</td>';
 	                            echo '<td>'.$offerType.'</td>';
 	                            echo '<td>'.ucwords($item).'</td>';

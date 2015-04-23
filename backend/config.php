@@ -34,8 +34,8 @@ $DBItems = 'items';
 // Your header image URL
 $headerimg = "images/header.png";
 
-// Your SMF Forum URL
-$forums = "#";
+// Your SMF Forum URL - do not include index.php
+$forums = "http://localhost/smf";
 
 // Offers shown per page
 $perpage = 25;
