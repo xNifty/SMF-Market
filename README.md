@@ -33,6 +33,7 @@ Copyright
 ------
 SMF Market - simple item marketplace tied into SMF  
 Copyright (C) {2015} Ryan 'iBeNifty' Malacina  
+I ask that you do not modify the footer in any way.  
   
 Please, I am still learning all about this. If you notice a vulnerability, etc. please contact me so I can learn how to prevent it in the future.
 I ask that you do not modify the footer in any way.
