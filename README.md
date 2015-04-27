@@ -34,8 +34,16 @@ and other issues is on my personal tracking page, located at https://ibenifty.me
 Copyright
 ------
 SMF Market - simple item marketplace tied into SMF  
-Copyright (C) {2015} Ryan 'iBeNifty' Malacina  
-I ask that you do not modify the footer in any way.  
+Copyright (C) {2015} Ryan 'iBeNifty' Malacina    
   
-Please, I am still learning all about this. If you notice a vulnerability, etc. please contact me so I can learn how to prevent it in the future.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.  
+  
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.  
+  
 I ask that you do not modify the footer in any way.
