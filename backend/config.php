@@ -7,7 +7,15 @@
 /*
 * So I set some random variables in here that get used all over the place. The reason I am doing this is so that
 *	you can .gitignore this file and not have your paths get screwed up each time an update is released.
+* TODO:
+*		- Add some of these things to an admin panel and not in this flat file system
 */
+
+/*
+* Version: 0.0.2
+* You can change this if you don't want to receive update notifications any longer (increase it to something high, such as 9999)
+*/
+$version = "0.0.2";
 
 /*
 * Relative URL for the SSI.php 
@@ -36,6 +44,11 @@ $headerimg = "images/header.png";
 
 // Your SMF Forum URL - do not include index.php
 $forums = "http://localhost/smf";
+
+// Have a wiki you'd like to use?
+$haswiki = True;
+// Okay, set your wiki link
+$wiki = '';
 
 // Offers shown per page
 $perpage = 25;

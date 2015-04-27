@@ -110,7 +110,7 @@ $startpage = ($page-1)*$perpage;
 	       	 	echo '<div class="footer">All times are Eastern</div>';
 	       	 	if (in_array_any($allowed_groups, $user_info['groups']))
 	       			echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-	       		echo '<div class="footer">Market written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
+	       		echo '<div class="footer">SMF-Market, version '.$version.', written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
 	       	}
 	    ?>
 	</wrapper>

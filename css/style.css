@@ -55,6 +55,7 @@ table a:hover {
 .footer {
     text-align: center;
     font-size: 8pt;
+    padding-bottom: 5px;
 }
 
 .footer a:link, .footer a:visited, .footer a:active {

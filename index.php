@@ -19,6 +19,11 @@ if (isset($_GET['page'])) {
 	$page = 1;
 }
 $startpage = ($page-1)*$perpage;
+$updateAvail = False;
+if (versionCompare($version)) {
+	if (in_array_any($allowed_groups, $user_info['groups']))
+		$updateAvail = True;
+}
 ?>
 
 <!doctype HTML>
@@ -66,7 +71,9 @@ $startpage = ($page-1)*$perpage;
 			function in_array_any($needles, $haystack) {
 				return !!array_intersect($needles, $haystack);
 			}
-
+			if ($updateAvail) {
+				echo '<div class="alert-box warning"><span>Notice: </span>New market version <a href="https://github.com/xNifty/SMF-Market/releases" target="_blank">available</a>!</div>';
+			}
 			echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
 
 			if (!$context['user']['is_guest']) {
@@ -107,7 +114,8 @@ $startpage = ($page-1)*$perpage;
 	                    echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
 	                else {
 						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
-						echo '<div class="header_text">Need information on an item? Check the <a href="http://yolocatz.x10.mx/wiki" target="_blank">wiki!</a> <br /></div>';
+						if ($haswiki)
+							echo '<div class="header_text">Need information on an item? Check the <a href="'.$wiki.'" target="_blank">wiki!</a> <br /></div>';
 						echo '<div class="header_text">This page only displays '.$perpage.' offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
 						echo '<div class="header_text notice">Notice: we do not confirm any one person owns the item they are "selling"; please report those abusing the system. <br /></div>';
 						echo '<hr>';
@@ -124,7 +132,10 @@ $startpage = ($page-1)*$perpage;
 	                        echo '</tr>';
 	                    while ($offers->fetch()) {
 	                        echo '<tr>';
-	                        	echo '<td><a href="'.$forums.'/index.php?action=pm;sa=send;u='.getUserID($forumName).';subject=['.$offerType.'] '.ucwords($item).'" target="_blank">'.$forumName.'</a></td>';
+	                        	if (!$context['user']['is_guest'])
+	                        		echo '<td><a href="'.$forums.'/index.php?action=pm;sa=send;u='.getUserID($forumName).';subject=['.$offerType.'] '.ucwords($item).'" target="_blank">'.$forumName.'</a></td>';
+	                        	else
+	                        		echo '<td>'.$forumName.'</td>';
 	                            echo '<td>'.$username.'</td>';
 	                            echo '<td>'.$offerType.'</td>';
 	                            echo '<td>'.ucwords($item).'</td>';
@@ -188,7 +199,7 @@ $startpage = ($page-1)*$perpage;
 	       	 	echo '<div class="footer">All times are Eastern</div>';
 	       	 	if (in_array_any($allowed_groups, $user_info['groups']))
 	       			echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-	       		echo '<div class="footer">Market written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
+	       		echo '<div class="footer">SMF-Market, version '.$version.', written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
 	       	}
 	    ?>
 	</wrapper>
