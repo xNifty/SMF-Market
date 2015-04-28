@@ -79,8 +79,9 @@ if (empty($_GET['search'])) {
         *       - Returns any matching result (i.e. dragon would show all items with dragon in name or users with dragon in their name)
         *       - Pages for overflow (pagination)
         *       - Sort by buying or selling (plus date, amount, item name)
+        *       - Send private message to user on forums by clicking their name (logged in users only)
         * IGNORED:
-        *      - Send private message to user on forums by clicking their name (logged in users only)
+        *      - ???
         */
         $search = "%{$_GET['search']}%";
         $display = $_GET['search'];

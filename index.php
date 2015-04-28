@@ -59,7 +59,7 @@ if (versionCompare($version)) {
 	<wrapper>
 		<?php
 			echo '<ul class="nav">';
-				echo '<li><a href="#">Home</a></li>';
+				echo '<li><a href="index.php">Home</a></li>';
 				echo '<li><a href="'.$forums.'">Forums</a></li>';
 				echo '<li><a href="./live.php">Live Feed</a></li>';
 				echo '<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">';
