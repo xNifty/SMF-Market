@@ -68,9 +68,6 @@ if (versionCompare($version)) {
 			echo '</ul>';
 			$now = new DateTime();
 			$now->setTimezone(new DateTimeZone('America/Detroit'));
-			function in_array_any($needles, $haystack) {
-				return !!array_intersect($needles, $haystack);
-			}
 			if ($updateAvail) {
 				echo '<div class="alert-box warning"><span>Notice: </span>New market version <a href="https://github.com/xNifty/SMF-Market/releases" target="_blank">available</a>!</div>';
 			}
@@ -113,7 +110,7 @@ if (versionCompare($version)) {
 	                if ($num_rows == 0)
 	                    echo '<div class="alert-box error"><span>ERROR: </span>No Offers Currently Posted!</div>';
 	                else {
-						echo '<div class="header_text">There are currently '.$num_rows.' active offers <br /></div>';
+						echo '<div class="header_text">There are currently '.totalOffersIndex($conn).' active offers <br /></div>';
 						if ($haswiki)
 							echo '<div class="header_text">Need information on an item? Check the <a href="'.$wiki.'" target="_blank">wiki!</a> <br /></div>';
 						echo '<div class="header_text">This page only displays '.$perpage.' offers; please use the page listing at the bottom for more or try narrowing with the search bar. <br /></div>';
@@ -196,10 +193,10 @@ if (versionCompare($version)) {
 					echo '</div>';
 				}
 	       	 	$time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
-	       	 	echo '<div class="footer">All times are Eastern</div>';
+	       	 	echo '<div class="footer">All times are Eastern<br>';
 	       	 	if (in_array_any($allowed_groups, $user_info['groups']))
-	       			echo '<div class="footer">Page load complete; execution time: ' .$time. '</div>';
-	       		echo '<div class="footer">SMF-Market, version '.$version.', written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
+	       			echo 'Page load complete; execution time: ' .$time.'<br>';
+	       		echo 'SMF-Market, version '.$version.', written and maintained by Ryan M. on <a href="https://github.com/xNifty" target="_blank">GitHub</a>; &copy; 2015 <a href="https://ibenifty.me/" target="_blank">Ryan M.</a></div>';
 	       	}
 	    ?>
 	</wrapper>

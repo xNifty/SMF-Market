@@ -21,9 +21,36 @@ function getLatestTag($default = 'master') {
     $vers = $tags[0]->{'name'};
     return $vers;
 }
+
 function versionCompare($curVers) {
 	$gitvers = getLatestTag();
 	if ($gitvers > $curVers)
 		return True;
+}
+
+function in_array_any($needles, $haystack) {
+        return !!array_intersect($needles, $haystack);
+      }
+
+function totalOffersIndex($conn) {
+  $total_offers = 0;
+  if ($total = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` ORDER BY `ID`")) {
+    $total->execute();
+    $total->store_result();
+    $total->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
+    $total_offers = $total->num_rows;
+  }
+  return $total_offers;
+}
+function totalOffersSearch($conn, $term) {
+  $total_offers = 0;
+  if (@$total = $conn->prepare("SELECT `ID`, `offerType`, `forumName`, `username`, `item`, `amount`, `price`, `postDate` FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? OR `forumName` like ? ORDER BY `ID`")) {
+    @$total->bind_param('sss', $term, $term, $term);
+    @$total->execute();
+    @$total->store_result();
+    @$total->bind_result($id, $offerType, $forumName, $username, $item, $amount, $price, $postDate);
+    @$total_offers = $total->num_rows;
+  }
+  return $total_offers;
 }
 ?>

@@ -6,6 +6,7 @@
 
 <?php
 include("backend/config.php");
+include("backend/functions.php");
 require_once($level1);
 
 $SMFUser = $context['user']['username'];
@@ -58,9 +59,6 @@ if (empty($_GET['search'])) {
                 echo '<input type="text" name="search" placeholder="Search">';
                 echo '<input type="submit" value="Submit" onsubmit="validateSearch(search)"></form></li>';
         echo '</ul>';
-        function in_array_any($needles, $haystack) {
-            return !!array_intersect($needles, $haystack);
-        }
 
         echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
 
@@ -99,7 +97,7 @@ if (empty($_GET['search'])) {
                 if ($num_rows == 0)
                     echo '<div class="alert-box error"><span>ERROR: </span>No Results Found For <div class="special_word">'.$display.'</div></div>';
                 else {
-                    echo '<div class="alert-box success"><span>SUCCESS: </span>Found '.$num_rows.' results for <div class="special_word">'.$display.'</div></div>';
+                    echo '<div class="alert-box success"><span>SUCCESS: </span>Found '.totalOffersSearch($conn, $search).' results for <div class="special_word">'.$display.'</div></div>';
                     echo '<div class="header_text notice">Notice: we do not confirm any one person owns the item they are "selling"; please report those abusing the system. <br /></div>';
                     echo '<table id="results" class="tablesorter">';
                         echo '<thead>';
@@ -136,8 +134,8 @@ if (empty($_GET['search'])) {
                     echo '</table>';
                 }
             }
-            if (@$pagin = $conn->prepare("SELECT * FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ?")) {
-                @$pagin->bind_param('ss', $search, $search);
+            if (@$pagin = $conn->prepare("SELECT * FROM `entries` WHERE `username` LIKE ? OR `item` LIKE ? or `forumName` like ?")) {
+                @$pagin->bind_param('sss', $search, $search, $search);
                 @$pagin->execute();
                 @$pagin->store_result();
                 @$pagin->bind_result($id, $offerType, $username, $item, $amount, $price, $postDate);

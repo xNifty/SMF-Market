@@ -6,6 +6,7 @@
 
 <?php
 include("backend/config.php");
+include("backend/functions.php");
 require_once($level1);
 
 $SMFUser = $context['user']['username'];
@@ -71,9 +72,6 @@ $startpage = ($page-1)*$perpage;
 			echo '</ul>';
 			$now = new DateTime();
 			$now->setTimezone(new DateTimeZone('America/Detroit'));
-			function in_array_any($needles, $haystack) {
-				return !!array_intersect($needles, $haystack);
-			}
 
 			echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
 

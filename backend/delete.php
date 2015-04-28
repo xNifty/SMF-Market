@@ -6,6 +6,7 @@
 
 <?php
 include("config.php");
+include("functions.php");
 require_once($level2);
 is_not_guest("You don't have access to this.");
 
@@ -16,10 +17,6 @@ $now->setTimezone(new DateTimeZone('America/Detroit'));
 ?>
 
 <?php
-    function in_array_any($needles, $haystack) {
-        return !!array_intersect($needles, $haystack);
-    }
-
     /*
     * Here is the MySQLi database loading and offer displaying from a single user / item search; we'll display upto 50 results here
     * TODO:
