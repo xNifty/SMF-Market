@@ -19,11 +19,6 @@ if (isset($_GET['page'])) {
 	$page = 1;
 }
 $startpage = ($page-1)*$perpage;
-$updateAvail = False;
-if (versionCompare($version)) {
-	if (in_array_any($allowed_groups, $user_info['groups']))
-		$updateAvail = True;
-}
 ?>
 
 <!doctype HTML>
@@ -62,14 +57,25 @@ if (versionCompare($version)) {
 				echo '<li><a href="index.php">Home</a></li>';
 				echo '<li><a href="'.$forums.'">Forums</a></li>';
 				echo '<li><a href="./live.php">Live Feed</a></li>';
+				if (!$context['user']['is_guest']) {
+					$_SESSION['logout_url'] = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+					echo '<li>'.ssi_logout().'</li>';
+				}
 				echo '<li><form name="searchForm" action="search.php" method="GET" onsubmit="return validateSearch()">';
 					echo '<input type="text" name="search" placeholder="Search" maxlength="25">';
 					echo '<input type="submit" value="Submit"></form></li>';
 			echo '</ul>';
+			if ($context['user']['is_guest']) {
+				echo '<div class="login">';
+				$_SESSION['login_url'] = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+				echo ssi_login();
+				echo '</div>';
+			}
 			$now = new DateTime();
 			$now->setTimezone(new DateTimeZone('America/Detroit'));
-			if ($updateAvail) {
-				echo '<div class="alert-box warning"><span>Notice: </span>New market version <a href="https://github.com/xNifty/SMF-Market/releases" target="_blank">available</a>!</div>';
+			if ($checkForUpdate and in_array_any($allowed_groups, $user_info['groups'])) {
+				if (versionCompare($version))
+					echo '<div class="alert-box warning"><span>Notice: </span>New market version ('.getLatestTag().') <a href="https://github.com/xNifty/SMF-Market/releases" target="_blank">available</a>!</div>';
 			}
 			echo '<div class="header_img"><img src="'.$headerimg.'" alt="market header"></div>';
 

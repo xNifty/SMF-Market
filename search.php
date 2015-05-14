@@ -116,7 +116,10 @@ if (empty($_GET['search'])) {
                         echo '<tbody>';
                     while ($offers->fetch()) {
                         echo '<tr>';
-                            echo '<td>'.$forumName.'</td>';
+                            if (!$context['user']['is_guest'])
+                                echo '<td><a href="'.$forums.'/index.php?action=pm;sa=send;u='.getUserID($forumName).';subject=['.$offerType.'] '.ucwords($item).'" target="_blank">'.$forumName.'</a></td>';
+                            else
+                                echo '<td>'.$forumName.'</td>';
                             echo '<td>'.$username.'</td>';
                             echo '<td>'.$offerType.'</td>';
                             echo '<td>'.ucwords($item).'</td>';

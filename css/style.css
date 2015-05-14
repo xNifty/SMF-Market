@@ -114,6 +114,8 @@ table a:hover {
 
 /* HEADER */
 .header_img {
+    clear: both;
+    float: none;
     text-align: center;
 }
 .header_text {
@@ -298,9 +300,10 @@ table.tablesorter {
 .ssi_table tr, .ssi_table td {
     display: inline-block;
 }
-table.ssi_table {
-    display: inline-block;
-    height: 17px;
+
+.login {
+    clear: both;
+    float: right;
 }
 /* END LOGIN / LOGOUT */
 

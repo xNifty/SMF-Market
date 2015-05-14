@@ -78,4 +78,11 @@ $useItemDB = True;
 */
 $useItemVarification = True;
 
+/*
+* checkForUpdate
+*	- Do you want to check GitHub for an update to the script
+*
+*/
+$checkForUpdate = True;
+
 ?>
