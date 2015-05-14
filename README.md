@@ -29,7 +29,11 @@ Important
 Please don't make use of this market yet - full written directions to make this work are ongoing and this is undergoing changes fairly often.
 This market does require a manual change to the SMF files to make use of the PM feature and some things will be changing over time.  
 I do not actively check this repository, as I have lots of other things going on. While I do constantly update the project, the best place to report bugs
-and other issues is on my personal tracking page, located at https://ibenifty.me/bug_tracking
+and other issues is on my personal tracking page, located at https://ibenifty.me/bug_tracking  
+  
+General Notes
+------
+The PM-Subject-URL is an SMF modification to be uploaded through the package manager to allow the PM subjects to be set in the URL (for when a user clicks a name to send a message)
 
 Copyright
 ------
