@@ -1,6 +1,7 @@
 SMF-Market
 ======
-Basic market place page hooked into SMF using their SSI.
+Basic market place page hooked into SMF using their SSI.  
+Being redone in a new [repository](https://github.com/xNifty/SMFMarket)
 
 About
 ------ 
